@@ -6,7 +6,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <title>Edit Product</title>
 </head>
-<body>
+<body class="container">
     <h1>Edit Product</h1>
     <form action="/products/<%=product._id%>?_method=PUT" method="post">
         <div class="form-floating mb-3">
@@ -17,9 +17,8 @@
             <input class="form-control" type="number" name="productPrice" id="productPrice" step="0.01" placeholder="Product Price" min="0"value="<%-product.price%>">
             <label for="productPrice">Price (un):</label>
         </div>
-        <div class="form-floating">
-            
-            <select class="form-select"name="productCategory" id="productCategory">
+        <div class="form-floating mb-3">
+            <select class="form-select" name="productCategory" id="productCategory">
             <% for( let category of categories ) { %>
                 <option value="<%-category%>" <%-product.category == category ? 'selected' : '' %> ><%-category%></option>
             <% } %>
