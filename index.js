@@ -27,8 +27,15 @@ app.get('/', function(req, res, next) {
 });
 
 app.get('/products', async function(req, res, next) {
-	const products = await Product.find({}).sort({ name: 1 });
-	res.render('products', { products });
+	const { category } = req.query;
+
+	if (category) {
+		const products = await Product.find({ category }).sort({ name: 1 });
+		res.render('products', { products, category });
+	} else {
+		const products = await Product.find({}).sort({ name: 1 });
+		res.render('products', { products, category: 'All' });
+	}
 });
 
 app

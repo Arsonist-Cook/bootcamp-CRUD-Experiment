@@ -10,7 +10,7 @@
     <h2><%-product.name%></h2>
     <ul>
         <li><strong>Price: </strong> <%- product.price %></li>
-        <li><strong>Category: </strong> <%- product.category %></li>
+        <li><strong>Category: </strong> <a href="/products?category=<%- product.category %>"><%- product.category %></a></li>
     </ul>
     <a href="/products">Return</a>
     <a href="/products/<%=product._id%>/edit">Edit</a>
