@@ -34,7 +34,7 @@ app.get('/products', async function(req, res, next) {
 app
 	.route('/products/new')
 	.get(function(req, res, next) {
-		console.log('new');
+		// console.log('new');
 		res.render('newProduct', { categories });
 	})
 	.post(async function(req, res, next) {
@@ -45,28 +45,38 @@ app
 		};
 		const newProduct = new Product(product);
 		const result = await newProduct.save();
-		console.log(result);
+		// console.log(result);
 		res.redirect('/products');
 	});
 
 app
 	.route('/products/:id')
 	.get(async function(req, res, next) {
-		const product = await Product.findById(req.params.id);
+		const id = req.params.id;
+		const product = await Product.findById(id);
 		res.render('detail', { product });
 	})
 	.put(async function(req, res, next) {
+		const id = req.params.id;
 		const product = {
 			name: req.body.productName,
 			price: req.body.productPrice,
 			category: req.body.productCategory
 		};
-		const { id } = req.body;
-		const result = await Product.findOneAndUpdate({ id }, product, {
+		// console.log(product);
+		const result = await Product.findByIdAndUpdate(id, product, {
 			runValidators: true,
 			useFindAndModify: false
 		});
+		// console.log(result);
 		res.redirect(`/products/${result._id}`);
+	})
+	.delete(async function(req, res, next) {
+		const id = req.params.id;
+		// Product.findOneAndDelete({id})
+		await Product.findByIdAndRemove(id, { useFindAndModify: false });
+		// console.log(deletedProduct);
+		res.redirect('/products');
 	});
 
 app.get('/products/:id/edit', async function(req, res, next) {
