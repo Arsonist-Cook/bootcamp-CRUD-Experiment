@@ -9,16 +9,26 @@
 <body class="container">
     <h1>New Product</h1>
     <form action="/products/new" method="post">
-        <label for="productName">Name:</label>
-        <input type="text" name="productName" id="productName" placeholder="Product Name">
-        <label for="productPrice">Price (un):</label>
-        <input type="number" name="productPrice" id="productPrice" step="0.01" placeholder="Product Price" min="0">
-        <label for="productCategory">Select Category:</label>
-        <select name="productCategory" id="productCategory">
-           <% for( let category of categories ) { %>
-            <option value="<%-category%>"><%-category%></option>
-           <% } %>
-        </select>
+
+        <div class="form-floating mb-3">
+            <input class="form-control" type="text" name="productName" id="productName" placeholder="Product Name">
+            <label for="productName">Name:</label>
+        </div>
+        
+        <div class="form-floating mb-3">
+            <input class="form-control" type="number" name="productPrice" id="productPrice" step="0.01" placeholder="Product Price" min="0">
+            <label for="productPrice">Price (un):</label>
+        </div>
+        
+        <div class="form-floating mb-3">
+            <select class="form-select" name="productCategory" id="productCategory">
+                <% for( let category of categories ) { %>
+                <option value="<%-category%>"><%-category%></option>
+                <% } %>
+            </select>
+            <label for="productCategory">Select Category:</label>
+        </div>
+        
         <button class="btn btn-success">Save</button>
     </form>
     
