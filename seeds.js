@@ -44,21 +44,6 @@ mongoose
 		console.error(error);
 	});
 
-// const newProduct = new Product({
-// 	name: 'Ruby Grapefruit',
-// 	price: 2.99,
-// 	category: 'fruit'
-// });
-
-// newProduct
-// 	.save()
-// 	.then((value) => {
-// 		console.log(value);
-// 	})
-// 	.catch((error) => {
-// 		console.error(error);
-// 	});
-
 Product.insertMany(productSeeds)
 	.then((value) => {
 		console.log(value);
